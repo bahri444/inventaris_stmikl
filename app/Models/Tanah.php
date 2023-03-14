@@ -8,4 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Tanah extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_sarana';
+    protected $table = 'tbl_lahan';
+    protected $fillable = [
+        'jenis_prasarana',
+        'nama_prasarana',
+        'no_sertifikat_tanah',
+        'panjang',
+        'lebar',
+        'luas_lahan_tersedia',
+        'kepemilikan',
+        'alamat',
+        'rt',
+        'rw',
+        'nama_dusun',
+        'desa_kelurahan',
+        'kecamatan',
+        'kode_pos',
+        'created_at',
+        'updated_at'
+    ];
+    public $timestamps = false;
 }
