@@ -28,7 +28,9 @@ Route::get('/logout', [UserController::class, 'Logout'])->name('logout');
 
 Route::prefix('tanah')->group(function () {
     Route::get('/', [TanahController::class, 'GetTanahBangunan'])->name('gettanahbangunan');
-    Route::post('addtanah', [TanahController::class, 'AddTanah'])->name('addtanah');
+    Route::post('/addtanah', [TanahController::class, 'AddTanah'])->name('addtanah');
+    Route::post('/updttanah', [TanahController::class, 'UpdtTanah'])->name('updttanah');
+    Route::get('/delete/{id}', [TanahController::class, 'Delete'])->name('delete');
 
     Route::post('/addbangunan', [BangunanController::class, 'AddBangunan'])->name('addbangunan');
 });
@@ -41,6 +43,8 @@ Route::prefix('ruang')->group(function () {
 Route::prefix('sarana')->group(function () {
     Route::get('/', [SaranaController::class, 'GetSarana'])->name('getsarana');
     Route::post('/addsarana', [SaranaController::class, 'AddSarana'])->name('addsarana');
+    Route::post('/updtsarana', [SaranaController::class, 'UpdtSarana'])->name('updtsarana');
+    Route::get('/delete/{id}', [SaranaController::class, 'Delete'])->name('delete');
 });
 
 Route::prefix('trxruang')->group(function () {
@@ -57,5 +61,6 @@ Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'GetUser'])->name('getuser');
     Route::post('/login', [UserController::class, 'Auth'])->name('login');
     Route::post('/register', [UserController::class, 'Register'])->name('register');
-    Route::get('/delete', [UserController::class, 'Delete'])->name('delete');
+    Route::post('/update', [UserController::class, 'UpdateUs'])->name('update');
+    Route::get('/delete/{id}', [UserController::class, 'Delete'])->name('delete');
 });

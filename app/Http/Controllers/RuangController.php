@@ -10,9 +10,11 @@ class RuangController extends Controller
     public function GetRuang()
     {
         $ruang = Ruang::all();
+        $fields = ['id_bangunan',    'kode_ruang',    'nama_ruang',    'panjang',    'lebar',    'luas_ruang',    'kapasitas'];
         return view('superadmin.ruang', [
             'title' => 'data ruang',
-            'ruang' => $ruang
+            'ruang' => $ruang,
+            'fields' => $fields,
         ]);
     }
     public function AddRuang(Request $request)

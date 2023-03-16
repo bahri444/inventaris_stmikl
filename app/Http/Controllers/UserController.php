@@ -19,6 +19,26 @@ class UserController extends Controller
         ]);
     }
 
+    public function UpdateUs(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|max:15',
+            'email' => 'required',
+            'role' => 'required'
+        ]);
+        try {
+            $data = array(
+                'username' => $request->username,
+                'email' => $request->email,
+                'role' => $request->role,
+            );
+            User::where('id', '=', $request->post('id'))->update($data);
+            return redirect('user')->with('success', 'berhasil');
+        } catch (\Exception $e) {
+            return redirect('user')->with('errors', 'gagal');
+        }
+    }
+
     public function Register(Request $request)
     {
         $request->validate([
