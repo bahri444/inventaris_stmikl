@@ -83,13 +83,13 @@
                     <li class="side-nav-item">
                         <a href="/trxruang" class="side-nav-link">
                             <i class="uil-coins"></i>
-                            <span>Sarana ruang</span>
+                            <span>Kondisi ruang</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="/trxperiodik" class="side-nav-link">
                             <i class="uil-calendar-alt"></i>
-                            <span>Periodik</span>
+                            <span>Sarana periodik</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
