@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bangunan;
+use App\Models\Sarana;
 use App\Models\Tanah;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,9 @@ class TanahController extends Controller
 {
     public function GetTanahBangunan()
     {
+        $sarana = Sarana::select('id_sarana', 'nama_sarana')->get();
         $tanah = Tanah::all();
-        $bangunan = Bangunan::all();
+        $bangunan = Bangunan::joinToSarana()->get();
         $fields = [
             'jenis_prasarana',
             'nama_prasarana',
@@ -28,11 +30,22 @@ class TanahController extends Controller
             'kecamatan',
             'kode_pos'
         ];
+        $fieldsBangunan = [
+            'jenis_bangunan',
+            'nama_bangunan',
+            'panjang',
+            'lebar',
+            'luas_tapak',
+            'kepemilikan',
+            'tahun_dibangun',
+        ];
         return view('superadmin.tanah', [
             'title' => 'Tanah dan bangunan',
             'tanah' => $tanah,
             'bangunan' => $bangunan,
-            'fields' => $fields
+            'fields' => $fields,
+            'sarana' => $sarana,
+            'fieldsBangunan' => $fieldsBangunan
         ]);
     }
     public function AddTanah(Request $request)

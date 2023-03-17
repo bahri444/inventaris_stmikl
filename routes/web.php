@@ -33,11 +33,15 @@ Route::prefix('tanah')->group(function () {
     Route::get('/delete/{id}', [TanahController::class, 'Delete'])->name('delete');
 
     Route::post('/addbangunan', [BangunanController::class, 'AddBangunan'])->name('addbangunan');
+    Route::post('/updtbangunan', [BangunanController::class, 'UpdtBangunan'])->name('updtbangunan');
+    Route::get('/deletebangunan/{id}', [BangunanController::class, 'Delete'])->name('delete');
 });
 
 Route::prefix('ruang')->group(function () {
     Route::get('/', [RuangController::class, 'GetRuang'])->name('getruang');
     Route::post('/addruang', [RuangController::class, 'AddRuang'])->name('addruang');
+    Route::post('/updtruang', [RuangController::class, 'UpdtRuang'])->name('updtruang');
+    Route::get('/delete/{id}', [RuangController::class, 'Delete'])->name('delete');
 });
 
 Route::prefix('sarana')->group(function () {
@@ -49,12 +53,16 @@ Route::prefix('sarana')->group(function () {
 
 Route::prefix('trxruang')->group(function () {
     Route::get('/', [TrxRuangController::class, 'GetTrxRuang'])->name('gettrxruang');
-    Route::post('/addtrxruang', [TrxRuangController::class, 'GetTrxRuang'])->name('addtrxruang');
+    Route::post('/addtrxruang', [TrxRuangController::class, 'AddTrxRuang'])->name('addtrxruang');
+    Route::post('/updttrxruang', [TrxRuangController::class, 'UpdtTrxRuang'])->name('updttrxruang');
+    Route::get('/delete/{id}', [TrxRuangController::class, 'Delete'])->name('delete');
 });
 
 Route::prefix('trxperiodik')->group(function () {
     Route::get('/', [TrxPeriodikController::class, 'GetTrxPeriodik'])->name('gettrxperiodik');
     Route::post('/addtrxperiodik', [TrxPeriodikController::class, 'AddTrxPeriodik'])->name('addtrxperiodik');
+    Route::post('/updttrxperiodik', [TrxPeriodikController::class, 'UpdtTrxPeriodik'])->name('updttrxperiodik');
+    Route::get('/delete/{id}', [TrxPeriodikController::class, 'Delete'])->name('delete');
 });
 
 Route::prefix('user')->group(function () {

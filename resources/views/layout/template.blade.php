@@ -81,15 +81,15 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="/sarana" class="side-nav-link">
+                        <a href="/trxruang" class="side-nav-link">
                             <i class="uil-coins"></i>
-                            <span>Sarana ruangan</span>
+                            <span>Sarana ruang</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="/sarana" class="side-nav-link">
+                        <a href="/trxperiodik" class="side-nav-link">
                             <i class="uil-calendar-alt"></i>
-                            <span>Periode</span>
+                            <span>Periodik</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
@@ -149,11 +149,10 @@
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <span class="account-user-avatar">
-                                    <img src="{{ asset('') }}assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                    <img src="{{ asset('') }}assets/logo/logo_kampus.png" alt="user-image" class="rounded-circle">
                                 </span>
                                 <span>
-                                    <span class="account-user-name">Soeng Souy</span>
-                                    <span class="account-position">Founder</span>
+                                    <span class="account-user-name">{{Auth::user()->username}}</span>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -162,7 +161,7 @@
                                     <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="/logout" class="dropdown-item notify-item">
                                     <i class="mdi mdi-logout me-1"></i>
                                     <span>Logout</span>
                                 </a>

@@ -174,7 +174,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-2">
-                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAdd">
                         <i class="uil-plus"></i>Tambah bangunan
                     </button>
                 </div>
@@ -209,13 +209,13 @@
                                     <td>{{$row->luas_tapak}}</td>
                                     <td>{{$row->kepemilikan}}</td>
                                     <td>{{$row->tahun_dibangun}}</td>
-                                    <td>{{$row->tgl_sk_pemakaian}}</td>
+                                    <td>{{$row->tanggal_sk_pemakaian}}</td>
                                     <td>
                                         <div>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteBangunan{{$row->id_bangunan}}">
                                                 <i class="uil-trash-alt"></i>
                                             </button>
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#UpdateBangunan{{$row->id_bangunan}}">
                                                 <i class="uil-edit"></i>
                                             </button>
                                         </div>
@@ -231,4 +231,110 @@
         </div>
     </div>
 </div>
+
+<!-- Modal add -->
+<div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah bangunan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/tanah/addbangunan" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
+                        <select name="id_sarana" class="form-select" aria-label="Default select example">
+                            <option selected>pilih sarana</option>
+                            @foreach($sarana as $valId)
+                            <option value="{{$valId->id_sarana}}">{{$valId->nama_sarana}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @foreach($fieldsBangunan as $filb)
+                    <div class="mb-2">
+                        <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$filb)))}}</label>
+                        <input class="form-control form-control-sm" type="text" name="{{$filb}}" aria-label=".form-control-sm example">
+                    </div>
+                    @endforeach
+                    <div class="mb-2">
+                        <label for="exampleFormControlInput1" class="form-label">Tanggal SK</label>
+                        <input class="form-control form-control-sm" type="date" name="tanggal_sk_pemakaian" aria-label=".form-control-sm example">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end Modal add -->
+
+@foreach($bangunan as $val)
+<!-- Modal update -->
+<div class="modal fade" id="UpdateBangunan{{$val->id_bangunan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update bangunan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/tanah/updtbangunan" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id_bangunan" value="{{$val->id_bangunan}}" class="form-control">
+                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
+                        <select name="id_sarana" class="form-select" aria-label="Default select example">
+                            <option value="{{$val->id_sarana}}" selected>{{$val->nama_sarana}}</option>
+                            @foreach($sarana as $valId)
+                            <option value="{{$valId->id_sarana}}">{{$valId->nama_sarana}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @foreach($fieldsBangunan as $filb)
+                    <div class="mb-2">
+                        <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$filb)))}}</label>
+                        <input class="form-control form-control-sm" type="text" name="{{$filb}}" value="{{$val->$filb}}" aria-label=".form-control-sm example">
+                    </div>
+                    @endforeach
+                    <div class="mb-2">
+                        <label for="exampleFormControlInput1" class="form-label">Tanggal SK</label>
+                        <input class="form-control form-control-sm" type="date" name="tanggal_sk_pemakaian" value="{{$val->tanggal_sk_pemakaian}}" aria-label=".form-control-sm example">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end Modal update -->
+
+<!-- Modal delete -->
+<div class="modal fade" id="DeleteBangunan{{$val->id_bangunan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete data</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Yakin ingin menghapus data ini..?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                <a href="/tanah/deletebangunan/{{$val->id_bangunan}}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end Modal delete -->
+@endforeach
+
 @endsection

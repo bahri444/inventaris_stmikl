@@ -12,8 +12,8 @@ class TrxPeriodik extends Model
     protected $table = 'trx_sarana_periodik';
     protected $fillable = [
         'id_sarana',
-        'jumlah_total',
-        'jumlah_like',
+        'jumlah_total_trx',
+        'jumlah_like_trx',
         'created_at',
         'updated_at',
     ];
@@ -21,6 +21,6 @@ class TrxPeriodik extends Model
 
     public function scopeJoinToSarana($query)
     {
-        return $query->join('id_sarana.tbl_sarana', '=', 'id_sarana.trx_sarana_periodik');
+        return $query->join('tbl_sarana', 'tbl_sarana.id_sarana', '=', 'trx_sarana_periodik.id_sarana');
     }
 }

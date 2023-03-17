@@ -25,6 +25,6 @@ class Ruang extends Model
 
     public function scopeJoinToBangunan($query)
     {
-        return $query->join('id_bangunan.tbl_bangunan', 'id_bangunan.tbl_ruang');
+        return $query->join('tbl_bangunan', 'tbl_bangunan.id_bangunan', 'tbl_ruang.id_bangunan');
     }
 }

@@ -27,6 +27,6 @@ class Bangunan extends Model
 
     public function scopeJoinToSarana($query)
     {
-        return $query->join('id_sarana.tbl_sarana', '=', 'id_sarana.bangunan');
+        return $query->join('tbl_sarana', 'tbl_sarana.id_sarana', '=', 'tbl_bangunan.id_sarana');
     }
 }

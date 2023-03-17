@@ -21,6 +21,6 @@ class TrxRuang extends Model
 
     public function scopeJoinToRuang($query)
     {
-        return $query->join('id_ruang.tbl_ruang', 'id_ruang.trx_kondisi_ruang');
+        return $query->join('tbl_ruang', 'tbl_ruang.id_ruang', 'trx_kondisi_ruang.id_ruang');
     }
 }
