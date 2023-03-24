@@ -51,20 +51,20 @@ class TanahController extends Controller
     public function AddTanah(Request $request)
     {
         $request->validate([
-            'jenis_prasarana' => 'required',
-            'nama_prasarana' => 'required',
-            'no_sertifikat_tanah' => 'required',
-            'panjang' => 'required',
-            'lebar' => 'required',
-            'luas_lahan_tersedia' => 'required',
-            'kepemilikan' => 'required',
-            'alamat' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
-            'nama_dusun' => 'required',
-            'desa_kelurahan' => 'required',
-            'kecamatan' => 'required',
-            'kode_pos' => 'required'
+            'jenis_prasarana' => 'required|max:10',
+            'nama_prasarana' => 'required|max:50',
+            'no_sertifikat_tanah' => 'required|max:20',
+            'panjang' => 'required|max:4',
+            'lebar' => 'required|max:4',
+            'luas_lahan_tersedia' => 'required|max:4',
+            'kepemilikan' => 'required|max:20',
+            'alamat' => 'required|max:50',
+            'rt' => 'required|max:3',
+            'rw' => 'required|max:3',
+            'nama_dusun' => 'required|max:20',
+            'desa_kelurahan' => 'required|max:20',
+            'kecamatan' => 'required|max:20',
+            'kode_pos' => 'required|max:5'
         ]);
         try {
             Tanah::create($request->all());
@@ -77,20 +77,20 @@ class TanahController extends Controller
     public function UpdtTanah(Request $request)
     {
         $request->validate([
-            'jenis_prasarana' => 'required',
-            'nama_prasarana' => 'required',
-            'no_sertifikat_tanah' => 'required',
-            'panjang' => 'required',
-            'lebar' => 'required',
-            'luas_lahan_tersedia' => 'required',
-            'kepemilikan' => 'required',
-            'alamat' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
-            'nama_dusun' => 'required',
-            'desa_kelurahan' => 'required',
-            'kecamatan' => 'required',
-            'kode_pos' => 'required'
+            'jenis_prasarana' => 'required|max:10',
+            'nama_prasarana' => 'required|max:50',
+            'no_sertifikat_tanah' => 'required|max:20',
+            'panjang' => 'required|max:4',
+            'lebar' => 'required|max:4',
+            'luas_lahan_tersedia' => 'required|max:4',
+            'kepemilikan' => 'required|max:20',
+            'alamat' => 'required|max:50',
+            'rt' => 'required|max:3',
+            'rw' => 'required|max:3',
+            'nama_dusun' => 'required|max:20',
+            'desa_kelurahan' => 'required|max:20',
+            'kecamatan' => 'required|max:20',
+            'kode_pos' => 'required|max:5'
         ]);
         try {
             $data = array(

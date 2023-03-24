@@ -24,12 +24,12 @@ class RuangController extends Controller
     {
         $request->validate([
             'id_bangunan' => 'required',
-            'kode_ruang' => 'required',
-            'nama_ruang' => 'required',
-            'panjang' => 'required',
-            'lebar' => 'required',
-            'luas_ruang' => 'required',
-            'kapasitas' => 'required',
+            'kode_ruang' => 'required|max:30',
+            'nama_ruang' => 'required|max:30',
+            'panjang' => 'required|max:3',
+            'lebar' => 'required|max:3',
+            'luas_ruang' => 'required|max:30',
+            'kapasitas' => 'required|max:30',
         ]);
         try {
             Ruang::create($request->all());
@@ -42,12 +42,12 @@ class RuangController extends Controller
     {
         $request->validate([
             'id_bangunan' => 'required',
-            'kode_ruang' => 'required',
-            'nama_ruang' => 'required',
-            'panjang' => 'required',
-            'lebar' => 'required',
-            'luas_ruang' => 'required',
-            'kapasitas' => 'required',
+            'kode_ruang' => 'required|max:30',
+            'nama_ruang' => 'required|max:30',
+            'panjang' => 'required|max:3',
+            'lebar' => 'required|max:3',
+            'luas_ruang' => 'required|max:30',
+            'kapasitas' => 'required|max:30',
         ]);
         try {
 

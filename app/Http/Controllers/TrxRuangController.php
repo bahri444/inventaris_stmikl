@@ -25,7 +25,7 @@ class TrxRuangController extends Controller
         $request->validate([
             'id_ruang' => 'required',
             'kerusakan' => 'required',
-            'nilai_kerusakan' => 'required',
+            'nilai_kerusakan' => 'required|max:2',
         ]);
         // dd($request);
         try {
@@ -44,7 +44,7 @@ class TrxRuangController extends Controller
         $request->validate([
             'id_ruang' => 'required',
             'kerusakan' => 'required',
-            'nilai_kerusakan' => 'required',
+            'nilai_kerusakan' => 'required|max:2',
         ]);
         try {
             $data = array(

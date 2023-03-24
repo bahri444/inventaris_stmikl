@@ -115,7 +115,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input type="text" name="id_sarana_periodik" value="{{$val->id_sarana_periodik}}">
+                        <input type="hidden" name="id_sarana_periodik" value="{{$val->id_sarana_periodik}}">
                         <label for="exampleFormControlInput1" class="form-label">Sarana</label>
                         <select name="id_sarana" class="form-select" aria-label="Default select example">
                             @foreach($sarana as $ValId)

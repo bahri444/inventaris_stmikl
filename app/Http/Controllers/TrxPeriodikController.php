@@ -25,8 +25,8 @@ class TrxPeriodikController extends Controller
     {
         $request->validate([
             'id_sarana' => 'required',
-            'jumlah_total_trx' => 'required',
-            'jumlah_like_trx' => 'required',
+            'jumlah_total_trx' => 'required|max:3',
+            'jumlah_like_trx' => 'required|max:3',
         ]);
         try {
             TrxPeriodik::create($request->all());
@@ -40,8 +40,8 @@ class TrxPeriodikController extends Controller
     {
         $request->validate([
             'id_sarana' => 'required',
-            'jumlah_total_trx' => 'required',
-            'jumlah_like_trx' => 'required',
+            'jumlah_total_trx' => 'required|max:3',
+            'jumlah_like_trx' => 'required|max:3',
         ]);
         try {
             $data = array(

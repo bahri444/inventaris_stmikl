@@ -11,13 +11,13 @@ class BangunanController extends Controller
     {
         $request->validate([
             'id_sarana' => 'required',
-            'jenis_bangunan' => 'required',
-            'nama_bangunan' => 'required',
-            'panjang' => 'required',
-            'lebar' => 'required',
-            'luas_tapak' => 'required',
-            'kepemilikan' => 'required',
-            'tahun_dibangun' => 'required',
+            'jenis_bangunan' => 'required|max:30',
+            'nama_bangunan' => 'required|max:30',
+            'panjang' => 'required|max:3',
+            'lebar' => 'required|max:3',
+            'luas_tapak' => 'required|max:3',
+            'kepemilikan' => 'required|max:15',
+            'tahun_dibangun' => 'required|max:4',
             'tanggal_sk_pemakaian' => 'required',
         ]);
         try {
@@ -31,13 +31,13 @@ class BangunanController extends Controller
     {
         $request->validate([
             'id_sarana' => 'required',
-            'jenis_bangunan' => 'required',
-            'nama_bangunan' => 'required',
-            'panjang' => 'required',
-            'lebar' => 'required',
-            'luas_tapak' => 'required',
-            'kepemilikan' => 'required',
-            'tahun_dibangun' => 'required',
+            'jenis_bangunan' => 'required|max:30',
+            'nama_bangunan' => 'required|max:30',
+            'panjang' => 'required|max:3',
+            'lebar' => 'required|max:3',
+            'luas_tapak' => 'required|max:3',
+            'kepemilikan' => 'required|max:15',
+            'tahun_dibangun' => 'required|max:4',
             'tanggal_sk_pemakaian' => 'required',
         ]);
         try {

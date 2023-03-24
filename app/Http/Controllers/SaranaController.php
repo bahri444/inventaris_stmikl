@@ -20,11 +20,11 @@ class SaranaController extends Controller
     public function AddSarana(Request $request)
     {
         $request->validate([
-            'nama_sarana' => 'required',
-            'spesifikasi' => 'required',
-            'kepemilikan' => 'required',
-            'jumlah_total' => 'required',
-            'jumlah_like' => 'required',
+            'nama_sarana' => 'required|max:50',
+            'spesifikasi' => 'required|max:50',
+            'kepemilikan' => 'required|max:15',
+            'jumlah_total' => 'required|max:3',
+            'jumlah_like' => 'required|max:3',
         ]);
         try {
             Sarana::create($request->all());
@@ -37,11 +37,11 @@ class SaranaController extends Controller
     public function UpdtSarana(Request $request)
     {
         $request->validate([
-            'nama_sarana' => 'required',
-            'spesifikasi' => 'required',
-            'kepemilikan' => 'required',
-            'jumlah_total' => 'required',
-            'jumlah_like' => 'required',
+            'nama_sarana' => 'required|max:50',
+            'spesifikasi' => 'required|max:50',
+            'kepemilikan' => 'required|max:15',
+            'jumlah_total' => 'required|max:3',
+            'jumlah_like' => 'required|max:3',
         ]);
         try {
             $data = array(
