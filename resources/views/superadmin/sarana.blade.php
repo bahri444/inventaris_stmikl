@@ -26,9 +26,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Nama bangunan</th>
+                                    <th>Nama ruang</th>
                                     <th>Nama sarana</th>
                                     <th>Spesifikasi</th>
-                                    <th>Kepemilikan</th>
+                                    <th>Kepemilikan sarana</th>
                                     <th>Jumlah total</th>
                                     <th>Jumlah like</th>
                                     <th>Aksi</th>
@@ -39,9 +41,11 @@
                                 @foreach($sarana as $row)
                                 <tr>
                                     <td>{{$k++}}</td>
+                                    <td>{{$row->nama_bangunan}}</td>
+                                    <td>{{$row->nama_ruang}}</td>
                                     <td>{{$row->nama_sarana}}</td>
                                     <td>{{$row->spesifikasi}}</td>
-                                    <td>{{$row->kepemilikan}}</td>
+                                    <td>{{$row->kepemilikan_sarana}}</td>
                                     <td>{{$row->jumlah_total}}</td>
                                     <td>{{$row->jumlah_like}}</td>
                                     <td>
@@ -78,6 +82,15 @@
             <form action="/sarana/addsarana" method="post">
                 @csrf
                 <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Ruangan</label>
+                        <select name="id_ruang" class="form-select" aria-label="Default select example">
+                            <option selected>pilih ruangan</option>
+                            @foreach($ruang as $valId)
+                            <option value="{{$valId->id_ruang}}">{{$valId->nama_ruang}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     @foreach($fields as $fil)
                     <div class="mb-2">
                         <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
@@ -107,12 +120,21 @@
             <form action="/sarana/updtsarana" method="post">
                 @csrf
                 <div class="modal-body">
-                    @foreach($fields as $fil)
+                    <input type="hidden" name="id_sarana" value="{{$val->id_sarana}}" class="form-control">
                     <div class="mb-2">
-                        <input type="hidden" name="id_sarana" value="{{$val->id_sarana}}" class="form-control">
-                        <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
-                        <input class="form-control form-control-sm" type="text" name="{{$fil}}" value="{{$val->$fil}}" aria-label=".form-control-sm example">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Ruangan</label>
+                            <select name="id_ruang" class="form-select" aria-label="Default select example">
+                                <option value="{{$val->id_ruang}}" selected>{{$val->nama_ruang}}</option>
+                                @foreach($ruang as $valId)
+                                <option value="{{$valId->id_ruang}}">{{$valId->nama_ruang}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
+                    @foreach($fields as $fil)
+                    <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
+                    <input class="form-control form-control-sm" type="text" name="{{$fil}}" value="{{$val->$fil}}" aria-label=".form-control-sm example">
                     @endforeach
                 </div>
                 <div class="modal-footer">

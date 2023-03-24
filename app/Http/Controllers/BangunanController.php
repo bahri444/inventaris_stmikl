@@ -10,13 +10,13 @@ class BangunanController extends Controller
     public function AddBangunan(Request $request)
     {
         $request->validate([
-            'id_sarana' => 'required',
+            'id_tanah' => 'required',
             'jenis_bangunan' => 'required|max:30',
             'nama_bangunan' => 'required|max:30',
             'panjang_bangunan' => 'required|max:3',
             'lebar_bangunan' => 'required|max:3',
             'luas_tapak' => 'required|max:3',
-            'kepemilikan' => 'required|max:15',
+            // 'kepemilikan' => 'required|max:15',
             'tahun_dibangun' => 'required|max:4',
             'tanggal_sk_pemakaian' => 'required',
         ]);
@@ -30,25 +30,25 @@ class BangunanController extends Controller
     public function UpdtBangunan(Request $request)
     {
         $request->validate([
-            'id_sarana' => 'required',
+            'id_tanah' => 'required',
             'jenis_bangunan' => 'required|max:30',
             'nama_bangunan' => 'required|max:30',
             'panjang_bangunan' => 'required|max:3',
             'lebar_bangunan' => 'required|max:3',
             'luas_tapak' => 'required|max:3',
-            'kepemilikan' => 'required|max:15',
+            // 'kepemilikan' => 'required|max:15',
             'tahun_dibangun' => 'required|max:4',
             'tanggal_sk_pemakaian' => 'required',
         ]);
         try {
             $data = array(
-                'id_sarana' => $request->post('id_sarana'),
+                'id_tanah' => $request->post('id_tanah'),
                 'jenis_bangunan' => $request->post('jenis_bangunan'),
                 'nama_bangunan' => $request->post('nama_bangunan'),
                 'panjang_bangunan' => $request->post('panjang_bangunan'),
                 'lebar_bangunan' => $request->post('lebar_bangunan'),
                 'luas_tapak' => $request->post('luas_tapak'),
-                'kepemilikan' => $request->post('kepemilikan'),
+                // 'kepemilikan' => $request->post('kepemilikan'),
                 'tahun_dibangun' => $request->post('tahun_dibangun'),
                 'tanggal_sk_pemakaian' => $request->post('tanggal_sk_pemakaian'),
             );

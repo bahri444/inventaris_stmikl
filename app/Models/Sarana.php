@@ -11,13 +11,22 @@ class Sarana extends Model
     protected $primaryKey = 'id_sarana';
     protected $table = 'tbl_sarana';
     protected $fillable = [
+        'id_ruang',
         'nama_sarana',
         'spesifikasi',
-        'kepemilikan',
+        'kepemilikan_sarana',
         'jumlah_total',
         'jumlah_like',
         'created_at',
         'updated_at'
     ];
     public $timestamps = false;
+    public function scopeJoinToRuang($query)
+    {
+        return $query->join('tbl_ruang', 'tbl_ruang.id_ruang', '=', 'tbl_sarana.id_ruang');
+    }
+    public function scopeJoinToBangunan($query)
+    {
+        return $query->join('tbl_bangunan', 'tbl_bangunan.id_bangunan', '=', 'tbl_ruang.id_bangunan');
+    }
 }

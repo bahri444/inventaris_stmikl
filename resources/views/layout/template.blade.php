@@ -37,21 +37,21 @@
 
             <!-- LOGO -->
             <a href="index.html" class="logo text-center logo-light">
-                <span class="logo-lg">
-                    <img src="{{ asset('') }}assets/media/logo.png" alt="" height="16">
+                <span class="logo-lg mt-2">
+                    <img src="{{ asset('assets') }}/logo/logo_kampus.png" alt="" height="100">
                 </span>
                 <span class="logo-sm">
-                    <img src="{{ asset('') }}assets/images/logo_sm.png" alt="" height="16">
+                    <img src="{{ asset('assets') }}/logo/logo_kampus.png" alt="" height="50">
                 </span>
             </a>
 
             <!-- LOGO -->
             <a href="index.html" class="logo text-center logo-dark">
-                <span class="logo-lg">
-                    <img src="{{ asset('') }}assets/images/logo-dark.png" alt="" height="16">
+                <span class="logo-lg mt-2">
+                    <img src="{{ asset('assets') }}/logo/logo_kampus.png" alt="404" height="100">
                 </span>
                 <span class="logo-sm">
-                    <img src="{{ asset('') }}assets/images/logo_sm_dark.png" alt="" height="16">
+                    <img src="{{ asset('assets') }}/logo/logo_kampus.png" alt="404" height="50">
                 </span>
             </a>
 
@@ -59,8 +59,7 @@
 
                 <!--- Sidebar menu -->
                 <ul class="side-nav">
-
-                    <li class="side-nav-title side-nav-item">Menu</li>
+                    <li class="side-nav-title side-nav-item mt-4">MENU</li>
 
                     <li class="side-nav-item">
                         <a href="/tanah" class="side-nav-link">

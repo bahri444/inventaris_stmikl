@@ -11,7 +11,7 @@ class Bangunan extends Model
     protected $primaryKey = 'id_bangunan';
     protected $table = 'tbl_bangunan';
     protected $fillable = [
-        'id_sarana',
+        'id_tanah',
         'jenis_bangunan',
         'nama_bangunan',
         'panjang_bangunan',
@@ -24,9 +24,8 @@ class Bangunan extends Model
         'updated_at'
     ];
     public $timestamps = false;
-
-    public function scopeJoinToSarana($query)
+    public function scopeJoinToTanah($query)
     {
-        return $query->join('tbl_sarana', 'tbl_sarana.id_sarana', '=', 'tbl_bangunan.id_sarana');
+        return $query->join('tbl_tanah', 'tbl_tanah.id_tanah', '=', 'tbl_bangunan.id_tanah');
     }
 }

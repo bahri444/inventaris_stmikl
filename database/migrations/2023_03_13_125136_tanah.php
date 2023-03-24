@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_lahan', function (Blueprint $table) {
-            $table->id('id_sarana');
+        Schema::create('tbl_tanah', function (Blueprint $table) {
+            $table->id('id_tanah');
             $table->char('jenis_prasarana', 10);
             $table->string('nama_prasarana', 50);
             $table->char('no_sertifikat_tanah', 20);
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('tbl_lahan');
+        Schema::drop('tbl_tanah');
     }
 };

@@ -11,9 +11,10 @@ class TanahController extends Controller
 {
     public function GetTanahBangunan()
     {
-        $sarana = Sarana::select('id_sarana', 'nama_sarana')->get();
         $tanah = Tanah::all();
-        $bangunan = Bangunan::joinToSarana()->get();
+        $bangunan = Bangunan::joinToTanah()->get();
+        $tanahid = Tanah::select('id_tanah', 'nama_prasarana')->get();
+        // dd($bangunan);
         $fields = [
             'jenis_prasarana',
             'nama_prasarana',
@@ -36,7 +37,7 @@ class TanahController extends Controller
             'panjang_bangunan',
             'lebar_bangunan',
             'luas_tapak',
-            'kepemilikan',
+            // 'kepemilikan',
             'tahun_dibangun',
         ];
         return view('superadmin.tanah', [
@@ -44,7 +45,7 @@ class TanahController extends Controller
             'tanah' => $tanah,
             'bangunan' => $bangunan,
             'fields' => $fields,
-            'sarana' => $sarana,
+            'tanahid' => $tanahid,
             'fieldsBangunan' => $fieldsBangunan
         ]);
     }
@@ -109,7 +110,7 @@ class TanahController extends Controller
                 'kecamatan' => $request->post('kecamatan'),
                 'kode_pos' => $request->post('kode_pos')
             );
-            Tanah::where('id_sarana', '=', $request->post('id_sarana'))->update($data);
+            Tanah::where('id_tanah', '=', $request->post('id_tanah'))->update($data);
             redirect()->back()->with('tanah');
             return redirect('tanah')->with('success', 'berhasil');
         } catch (\Exception $e) {
@@ -120,7 +121,7 @@ class TanahController extends Controller
     public function Delete($id)
     {
         try {
-            Tanah::where('id_sarana', '=', $id)->delete();
+            Tanah::where('id_tanah', '=', $id)->delete();
             redirect()->back()->with('tanah');
             return redirect('tanah')->with('success', 'berhasil');
         } catch (\Exception $e) {

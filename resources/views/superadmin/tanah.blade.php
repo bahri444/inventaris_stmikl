@@ -67,10 +67,10 @@
                                     <td>{{$row->kode_pos}}</td>
                                     <td>
                                         <div>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_sarana}}">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_tanah}}">
                                                 <i class="uil-trash-alt"></i>
                                             </button>
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_sarana}}">
+                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_tanah}}">
                                                 <i class="uil-edit"></i>
                                             </button>
                                         </div>
@@ -118,7 +118,7 @@
 @foreach($tanah as $val)
 
 <!-- Modal update -->
-<div class="modal fade" id="modalUpdate{{$val->id_sarana}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalUpdate{{$val->id_tanah}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -130,9 +130,9 @@
                 <div class="modal-body">
                     @foreach($fields as $fil)
                     <div class="mb-2">
-                        <input type="hidden" name="id_sarana" value="{{$val->id_sarana}}" class="form-control">
+                        <input type="hidden" name="id_tanah" value="{{$val->id_tanah}}" class="form-control">
                         <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
-                        <input class="form-control form-control-sm" type="text" name="{{$fil}}" value="@if($val->id_sarana == true){{$val->$fil}}@endif" aria-label=".form-control-sm example">
+                        <input class="form-control form-control-sm" type="text" name="{{$fil}}" value="@if($val->id_tanah == true){{$val->$fil}}@endif" aria-label=".form-control-sm example">
                     </div>
                     @endforeach
                 </div>
@@ -148,7 +148,7 @@
 
 
 <!-- Modal delete -->
-<div class="modal fade" id="modalDelete{{$val->id_sarana}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalDelete{{$val->id_tanah}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -160,7 +160,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-                <a href="/tanah/delete/{{$val->id_sarana}}" class="btn btn-danger">Delete</a>
+                <a href="/tanah/delete/{{$val->id_tanah}}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
@@ -184,7 +184,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Id sarana</th>
                                     <th>Jenis bangunan</th>
                                     <th>Nama bangunan</th>
                                     <th>Panjang bangunan</th>
@@ -201,7 +200,6 @@
                                 @foreach($bangunan as $row)
                                 <tr>
                                     <td>{{$k++}}</td>
-                                    <td>{{$row->id_sarana}}</td>
                                     <td>{{$row->jenis_bangunan}}</td>
                                     <td>{{$row->nama_bangunan}}</td>
                                     <td>{{$row->panjang_bangunan}}</td>
@@ -244,11 +242,11 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
-                        <select name="id_sarana" class="form-select" aria-label="Default select example">
-                            <option selected>pilih sarana</option>
-                            @foreach($sarana as $valId)
-                            <option value="{{$valId->id_sarana}}">{{$valId->nama_sarana}}</option>
+                        <label for="exampleFormControlInput1" class="form-label">Prasarana</label>
+                        <select name="id_tanah" class="form-select" aria-label="Default select example">
+                            <option selected>pilih tanah</option>
+                            @foreach($tanahid as $valId)
+                            <option value="{{$valId->id_tanah}}">{{$valId->nama_prasarana}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -287,11 +285,11 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <input type="hidden" name="id_bangunan" value="{{$val->id_bangunan}}" class="form-control">
-                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
-                        <select name="id_sarana" class="form-select" aria-label="Default select example">
-                            <option value="{{$val->id_sarana}}" selected>{{$val->nama_sarana}}</option>
-                            @foreach($sarana as $valId)
-                            <option value="{{$valId->id_sarana}}">{{$valId->nama_sarana}}</option>
+                        <label for="exampleFormControlInput1" class="form-label">Prasarana</label>
+                        <select name="id_tanah" class="form-select" aria-label="Default select example">
+                            <option value="{{$val->id_tanah}}" selected>{{$val->nama_prasarana}}</option>
+                            @foreach($tanahid as $valId)
+                            <option value="{{$valId->id_tanah}}">{{$valId->nama_prasarana}}</option>
                             @endforeach
                         </select>
                     </div>

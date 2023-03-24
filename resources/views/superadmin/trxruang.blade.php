@@ -19,7 +19,7 @@
             <div class="card-body">
                 <div class="mb-2">
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="uil-plus"></i>Tambah ruang
+                        <i class="uil-plus"></i>Tambah trx ruang
                     </button>
                 </div>
                 <div class="tab-content">

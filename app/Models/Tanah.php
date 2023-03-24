@@ -9,7 +9,7 @@ class Tanah extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_sarana';
-    protected $table = 'tbl_lahan';
+    protected $table = 'tbl_tanah';
     protected $fillable = [
         'jenis_prasarana',
         'nama_prasarana',

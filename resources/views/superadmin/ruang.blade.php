@@ -28,7 +28,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Id bangunan</th>
+                                    <th>Nama bangunan</th>
                                     <th>Kode ruang</th>
                                     <th>Nama ruang</th>
                                     <th>Panjang</th>
@@ -43,7 +43,7 @@
                                 @foreach($ruang as $row)
                                 <tr>
                                     <td>{{$k++}}</td>
-                                    <td>{{$row->id_bangunan}}</td>
+                                    <td>{{$row->nama_bangunan}}</td>
                                     <td>{{$row->kode_ruang}}</td>
                                     <td>{{$row->nama_ruang}}</td>
                                     <td>{{$row->panjang_ruang}}</td>
