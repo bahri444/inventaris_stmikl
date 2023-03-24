@@ -12,7 +12,7 @@ class RuangController extends Controller
     {
         $ruang = Ruang::joinToBangunan()->get();
         $bangunan = Bangunan::select('id_bangunan', 'nama_bangunan')->get();
-        $fields = ['kode_ruang',    'nama_ruang',    'panjang',    'lebar',    'luas_ruang',    'kapasitas'];
+        $fields = ['kode_ruang',    'nama_ruang',    'panjang_ruang',    'lebar_ruang',    'luas_ruang',    'kapasitas'];
         return view('superadmin.ruang', [
             'title' => 'data ruang',
             'ruang' => $ruang,
@@ -26,8 +26,8 @@ class RuangController extends Controller
             'id_bangunan' => 'required',
             'kode_ruang' => 'required|max:30',
             'nama_ruang' => 'required|max:30',
-            'panjang' => 'required|max:3',
-            'lebar' => 'required|max:3',
+            'panjang_ruang' => 'required|max:3',
+            'lebar_ruang' => 'required|max:3',
             'luas_ruang' => 'required|max:30',
             'kapasitas' => 'required|max:30',
         ]);
@@ -44,8 +44,8 @@ class RuangController extends Controller
             'id_bangunan' => 'required',
             'kode_ruang' => 'required|max:30',
             'nama_ruang' => 'required|max:30',
-            'panjang' => 'required|max:3',
-            'lebar' => 'required|max:3',
+            'panjang_ruang' => 'required|max:3',
+            'lebar_ruang' => 'required|max:3',
             'luas_ruang' => 'required|max:30',
             'kapasitas' => 'required|max:30',
         ]);
@@ -55,8 +55,8 @@ class RuangController extends Controller
                 'id_bangunan' => $request->post('id_bangunan'),
                 'kode_ruang' => $request->post('kode_ruang'),
                 'nama_ruang' => $request->post('nama_ruang'),
-                'panjang' => $request->post('panjang'),
-                'lebar' => $request->post('lebar'),
+                'panjang_ruang' => $request->post('panjang_ruang'),
+                'lebar_ruang' => $request->post('lebar_ruang'),
                 'luas_ruang' => $request->post('luas_ruang'),
                 'kapasitas' => $request->post('kapasitas'),
             );

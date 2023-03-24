@@ -32,8 +32,8 @@
                                     <th>Jenis prasarana</th>
                                     <th>Nama prasarana</th>
                                     <th>No sertifikat tanah</th>
-                                    <th>Panjang</th>
-                                    <th>Lebar</th>
+                                    <th>Panjang tanah</th>
+                                    <th>Lebar tanah</th>
                                     <th>Luas lahan tersedia</th>
                                     <th>Kepemilikan</th>
                                     <th>RT</th>
@@ -55,8 +55,8 @@
                                     <td>{{$row->jenis_prasarana}}</td>
                                     <td>{{$row->nama_prasarana}}</td>
                                     <td>{{$row->no_sertifikat_tanah}}</td>
-                                    <td>{{$row->panajang}}</td>
-                                    <td>{{$row->lebar}}</td>
+                                    <td>{{$row->panjang_tanah}}</td>
+                                    <td>{{$row->lebar_tanah}}</td>
                                     <td>{{$row->luas_lahan_tersedia}}</td>
                                     <td>{{$row->kepemilikan}}</td>
                                     <td>{{$row->rt}}</td>
@@ -187,8 +187,8 @@
                                     <th>Id sarana</th>
                                     <th>Jenis bangunan</th>
                                     <th>Nama bangunan</th>
-                                    <th>Panjang</th>
-                                    <th>Lebar</th>
+                                    <th>Panjang bangunan</th>
+                                    <th>Lebar bangunan</th>
                                     <th>Luas tapak</th>
                                     <th>Kepemilikan</th>
                                     <th>Tahun dibangun</th>
@@ -204,8 +204,8 @@
                                     <td>{{$row->id_sarana}}</td>
                                     <td>{{$row->jenis_bangunan}}</td>
                                     <td>{{$row->nama_bangunan}}</td>
-                                    <td>{{$row->panajang}}</td>
-                                    <td>{{$row->lebar}}</td>
+                                    <td>{{$row->panjang_bangunan}}</td>
+                                    <td>{{$row->lebar_bangunan}}</td>
                                     <td>{{$row->luas_tapak}}</td>
                                     <td>{{$row->kepemilikan}}</td>
                                     <td>{{$row->tahun_dibangun}}</td>

@@ -22,7 +22,7 @@ class UserController extends Controller
     public function UpdateUs(Request $request)
     {
         $request->validate([
-            'username' => 'required|max:15',
+            'username' => 'required|max:30',
             'email' => 'required|max:30',
             'role' => 'required'
         ]);
@@ -42,9 +42,9 @@ class UserController extends Controller
     public function Register(Request $request)
     {
         $request->validate([
-            'username' => 'required|max:15',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'username' => 'required|max:30',
+            'email' => 'required|max:30|email|unique:users',
+            'password' => 'required|min:8',
             'role' => 'required'
         ]);
         try {

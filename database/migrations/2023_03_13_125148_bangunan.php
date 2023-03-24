@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('id_sarana');
             $table->string('jenis_bangunan', 30);
             $table->string('nama_bangunan', 30);
-            $table->char('panjang', 3);
-            $table->char('lebar', 3);
+            $table->char('panjang_bangunan', 3);
+            $table->char('lebar_bangunan', 3);
             $table->char('luas_tapak', 3);
             $table->string('kepemilikan', 15);
             $table->char('tahun_dibangun', 4);

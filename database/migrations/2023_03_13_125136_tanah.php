@@ -18,8 +18,8 @@ return new class extends Migration
             $table->char('jenis_prasarana', 10);
             $table->string('nama_prasarana', 50);
             $table->char('no_sertifikat_tanah', 20);
-            $table->char('panjang', 4);
-            $table->char('lebar', 4);
+            $table->char('panjang_tanah', 4);
+            $table->char('lebar_tanah', 4);
             $table->char('luas_lahan_tersedia', 4);
             $table->char('kepemilikan', 20);
             $table->string('alamat', 50);

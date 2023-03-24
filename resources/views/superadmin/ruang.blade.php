@@ -46,8 +46,8 @@
                                     <td>{{$row->id_bangunan}}</td>
                                     <td>{{$row->kode_ruang}}</td>
                                     <td>{{$row->nama_ruang}}</td>
-                                    <td>{{$row->panjang}}</td>
-                                    <td>{{$row->lebar}}</td>
+                                    <td>{{$row->panjang_ruang}}</td>
+                                    <td>{{$row->lebar_ruang}}</td>
                                     <td>{{$row->luas_ruang}}</td>
                                     <td>{{$row->kapasitas}}</td>
                                     <td>
