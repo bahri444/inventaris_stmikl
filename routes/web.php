@@ -1,12 +1,17 @@
 <?php
 
 use App\Http\Controllers\BangunanController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SaranaController;
+use App\Http\Controllers\TahunAkademikController;
 use App\Http\Controllers\TanahController;
-use App\Http\Controllers\TrxPeriodikController;
+use App\Http\Controllers\TrxSaranaController;
 use App\Http\Controllers\TrxRuangController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisiMisiController;
+use App\Models\TahunAkademik;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +30,6 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', [UserController::class, 'GetLogin'])->name('viewlogin');
 Route::get('/logout', [UserController::class, 'Logout'])->name('logout');
-
 Route::prefix('tanah')->group(function () {
     Route::get('/', [TanahController::class, 'GetTanahBangunan'])->name('gettanahbangunan');
     Route::post('/addtanah', [TanahController::class, 'AddTanah'])->name('addtanah');
@@ -58,11 +62,11 @@ Route::prefix('trxruang')->group(function () {
     Route::get('/delete/{id}', [TrxRuangController::class, 'Delete'])->name('delete');
 });
 
-Route::prefix('trxperiodik')->group(function () {
-    Route::get('/', [TrxPeriodikController::class, 'GetTrxPeriodik'])->name('gettrxperiodik');
-    Route::post('/addtrxperiodik', [TrxPeriodikController::class, 'AddTrxPeriodik'])->name('addtrxperiodik');
-    Route::post('/updttrxperiodik', [TrxPeriodikController::class, 'UpdtTrxPeriodik'])->name('updttrxperiodik');
-    Route::get('/delete/{id}', [TrxPeriodikController::class, 'Delete'])->name('delete');
+Route::prefix('trxsarana')->group(function () {
+    Route::get('/', [TrxSaranaController::class, 'GetTrxSarana'])->name('gettrxsarana');
+    Route::post('/addtrxsarana', [TrxSaranaController::class, 'AddTrxSarana'])->name('addtrxsarana');
+    Route::post('/updttrxsarana', [TrxSaranaController::class, 'UpdtTrxSarana'])->name('updttrxsarana');
+    Route::get('/delete/{id}', [TrxSaranaController::class, 'Delete'])->name('delete');
 });
 
 Route::prefix('user')->group(function () {
@@ -71,4 +75,23 @@ Route::prefix('user')->group(function () {
     Route::post('/register', [UserController::class, 'Register'])->name('register');
     Route::post('/update', [UserController::class, 'UpdateUs'])->name('update');
     Route::get('/delete/{id}', [UserController::class, 'Delete'])->name('delete');
+});
+
+Route::prefix('tahun_akademik')->group(function () {
+    Route::get('/', [TahunAkademikController::class, 'GetTahunAkademik'])->name('tahun_akademik');
+    Route::post('/add_tahun_akademik', [TahunAkademikController::class, 'AddTahunAkademik'])->name('add_tahun_akademik');
+    Route::post('/update_tahun_akademik', [TahunAkademikController::class, 'UpdateTahunAkademik'])->name('update_tahun_akademik');
+    Route::get('/delete_tahun_akademik/{id}', [TahunAkademikController::class, 'DeleteTahunAkademik'])->name('delete_tahun_akademik');
+});
+Route::prefix('program_studi')->group(function () {
+    Route::get('/', [ProgramStudiController::class, 'GetProgramStudi'])->name('program_studi');
+    Route::post('/addprogramstudi', [ProgramStudiController::class, 'AddProgramStudi'])->name('addprogramstudi');
+    Route::post('/updateprogramstudi', [ProgramStudiController::class, 'UpdateProgramStudi'])->name('updateprogramstudi');
+    Route::get('/deleteprogramstudi/{id}', [ProgramStudiController::class, 'DeleteProgramStudi'])->name('deleteprogramstudi');
+});
+Route::prefix('visi_misi')->group(function () {
+    Route::get('/', [VisiMisiController::class, 'GetVisiMisi'])->name('visimisi');
+    Route::post('/addvisimisi', [VisiMisiController::class, 'AddVisiMisi'])->name('addvisimisi');
+    Route::post('/updatevisimisi', [VisiMisiController::class, 'UpdateVisiMisi'])->name('updatevisimisi');
+    Route::get('/deletevisimisi/{id}', [VisiMisiController::class, 'DeleteVisiMisi'])->name('deletevisimisi');
 });

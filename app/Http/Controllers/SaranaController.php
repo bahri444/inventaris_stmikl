@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruang;
 use App\Models\Sarana;
+use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 
 class SaranaController extends Controller
@@ -17,13 +18,13 @@ class SaranaController extends Controller
             'spesifikasi',
             'kepemilikan_sarana',
             'jumlah_total',
-            'jumlah_like'
+            // 'jumlah_like'
         ];
         return view('superadmin.sarana', [
             'title' => 'data sarana',
             'sarana' => $sarana,
             'ruang' => $ruang,
-            'fields' => $fields
+            'fields' => $fields,
         ]);
     }
     public function AddSarana(Request $request)
@@ -34,14 +35,13 @@ class SaranaController extends Controller
             'spesifikasi' => 'required|max:50',
             'kepemilikan_sarana' => 'required|max:15',
             'jumlah_total' => 'required|max:3',
-            'jumlah_like' => 'required|max:3',
+            // 'jumlah_like' => 'required|max:3',
         ]);
         try {
             Sarana::create($request->all());
-            // redirect()->back()->with('sarana');
             return redirect('sarana')->with('success', 'berhasil');
         } catch (\Exception $e) {
-            return redirect('sarana')->with('errors', 'gagal');
+            return redirect('sarana')->with('errors', $e);
         }
     }
     public function UpdtSarana(Request $request)
@@ -52,7 +52,7 @@ class SaranaController extends Controller
             'spesifikasi' => 'required|max:50',
             'kepemilikan_sarana' => 'required|max:15',
             'jumlah_total' => 'required|max:3',
-            'jumlah_like' => 'required|max:3',
+            // 'jumlah_like' => 'required|max:3',
         ]);
         try {
             $data = array(
@@ -61,22 +61,21 @@ class SaranaController extends Controller
                 'spesifikasi' => $request->post('spesifikasi'),
                 'kepemilikan_sarana' => $request->post('kepemilikan_sarana'),
                 'jumlah_total' => $request->post('jumlah_total'),
-                'jumlah_like' => $request->post('jumlah_like'),
+                // 'jumlah_like' => $request->post('jumlah_like'),
             );
             Sarana::where('id_sarana', '=', $request->post('id_sarana'))->update($data);
             return redirect('sarana')->with('success', 'berhasil');
         } catch (\Exception $e) {
-            return redirect('sarana')->with('errors', 'gagal');
+            return redirect('sarana')->with('errors', $e);
         }
     }
     public function Delete($id)
     {
         try {
             Sarana::where('id_sarana', '=', $id)->delete();
-            // redirect()->back()->with('sarana');
             return redirect('sarana')->with('success', 'berhasil');
         } catch (\Exception $e) {
-            return redirect('sarana')->with('errors', 'gagal');
+            return redirect('sarana')->with('errors', $e);
         }
     }
 }

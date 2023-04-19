@@ -26,7 +26,7 @@
     <link href="{{ asset('assets') }}/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets') }}/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
     <link href="{{ asset('assets') }}/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
-
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"><!-- load icon graduate online -->
 </head>
 
 <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -60,11 +60,28 @@
                 <!--- Sidebar menu -->
                 <ul class="side-nav">
                     <li class="side-nav-title side-nav-item mt-4">MENU</li>
-
                     <li class="side-nav-item">
                         <a href="/tanah" class="side-nav-link">
                             <i class="uil-building"></i>
                             <span>Tanah & bangunan</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="/program_studi" class="side-nav-link">
+                            <i class="uil uil-graduation-cap"></i>
+                            <span>Program studi</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="/visi_misi" class="side-nav-link">
+                            <i class="uil-notes"></i>
+                            <span>Visi & Misi</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="/tahun_akademik" class="side-nav-link">
+                            <i class="uil-calendar-alt"></i>
+                            <span>Tahun akademik</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
@@ -86,9 +103,9 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="/trxperiodik" class="side-nav-link">
+                        <a href="/trxsarana" class="side-nav-link">
                             <i class="uil-calendar-alt"></i>
-                            <span>Sarana periodik</span>
+                            <span>Kondisi sarana</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
@@ -103,26 +120,6 @@
                             <span>Logout</span>
                         </a>
                     </li>
-                    <!-- <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
-                            <i class="uil-store"></i>
-                            <span>Pengabdian</span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarEcommerce">
-                            <ul class="side-nav-second-level">
-                                <li>
-                                    <a href="apps-ecommerce-products.html">Proposal</a>
-                                </li>
-                                <li>
-                                    <a href="apps-ecommerce-orders.html">Laporan</a>
-                                </li>
-                                <li>
-                                    <a href="apps-ecommerce-products-details.html">Anggota</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> -->
                 </ul>
 
                 <!-- End Sidebar -->

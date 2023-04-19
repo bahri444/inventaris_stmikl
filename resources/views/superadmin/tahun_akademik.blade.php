@@ -1,6 +1,5 @@
 @extends('layout.template')
-@section('content')
-<h2 class="header-header">{{$title ?? ''}}</h2>
+@section('content')<h2 class="header-header">{{$title ?? ''}}</h2>
 <div class="col-sm-11 col-md-6 col-lg-4 mx-auto mb-1">
     @if(session('success'))
     <p class="alert alert-success">{{ session('success') }}</p>
@@ -11,43 +10,39 @@
     @endforeach
     @endif
 </div>
-
-<!-- view read data ruangan -->
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <div class="mb-2">
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="uil-plus"></i>Tambah periodik
+                        <i class="uil-plus"></i>Tambah tahun akademik
                     </button>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane show active" id="buttons-table-preview">
-                        <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                        <table id="selection-datatable" class="table dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama sarana</th>
-                                    <th>Jumlah total</th>
-                                    <th>Jumlah like</th>
+                                    <th>Tahun semester</th>
+                                    <th>Periodik semester</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $k = 1 ?>
-                                @foreach($trxperiodik as $row)
+                                @foreach($tahun_akademik as $row)
                                 <tr>
                                     <td>{{$k++}}</td>
-                                    <td>{{$row->nama_sarana}}</td>
-                                    <td>{{$row->jumlah_total_trx}}</td>
-                                    <td>{{$row->jumlah_like_trx}}</td>
+                                    <td>{{$row->tahun}}</td>
+                                    <td>{{$row->semester}}</td>
                                     <td>
                                         <div>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_sarana_periodik}}">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_tahun_akademik}}">
                                                 <i class="uil-trash-alt"></i>
                                             </button>
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_sarana_periodik}}">
+                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_tahun_akademik}}">
                                                 <i class="uil-edit"></i>
                                             </button>
                                         </div>
@@ -63,33 +58,29 @@
         </div>
     </div>
 </div>
-<!-- end-view read data ruangan -->
 
 <!-- Modal add -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah transaksi ruang</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah sarana</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/trxperiodik/addtrxperiodik" method="post">
+            <form action="/tahun_akademik/add_tahun_akademik" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
-                        <select name="id_sarana" class="form-select" aria-label="Default select example">
-                            <option selected>pilih sarana</option>
-                            @foreach($sarana as $ValId)
-                            <option value="{{$ValId->id_sarana}}">{{$ValId->nama_sarana}}</option>
-                            @endforeach
+                        <label for="exampleFormControlInput1" class="form-label">Periodik semester</label>
+                        <select name="semester" class="form-select" aria-label="Default select example">
+                            <option selected>pilih semester</option>
+                            <option value="ganjil">Ganjil</option>
+                            <option value="genap">Genap</option>
                         </select>
                     </div>
-                    <div class="mt-3">
-                        @foreach($fields as $fil)
-                        <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
-                        <input type="text" name="{{$fil}}" class="form-control" placeholder="masukkan {{join(' ',array_map('ucfirst',explode('_',$fil)))}}">
-                        @endforeach
+                    <div class="mb-2">
+                        <label for="exampleFormControlInput1" class="form-label">Tahun akademik</label>
+                        <input class="form-control form-control-sm" type="text" name="tahun" placeholder="masukkan tahun akademik" aria-label=".form-control-sm example">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -102,32 +93,30 @@
 </div>
 <!-- end Modal add -->
 
-@foreach($trxperiodik as $val)
+@foreach($tahun_akademik as $val)
 <!-- Modal update -->
-<div class="modal fade" id="modalUpdate{{$val->id_sarana_periodik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalUpdate{{$val->id_tahun_akademik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update transaksi ruang</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update tahun akademik</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/trxperiodik/updttrxperiodik" method="post">
+            <form action="/tahun_akademik/update_tahun_akademik" method="post">
                 @csrf
                 <div class="modal-body">
+                    <input type="hidden" name="id_tahun_akademik" value="{{$val->id_tahun_akademik}}" class=".form-control-sm">
                     <div class="mb-3">
-                        <input type="hidden" name="id_sarana_periodik" value="{{$val->id_sarana_periodik}}">
-                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
-                        <select name="id_sarana" class="form-select" aria-label="Default select example">
-                            @foreach($sarana as $ValId)
-                            <option value="{{$ValId->id_sarana}}">{{$ValId->nama_sarana}}</option>
-                            @endforeach
+                        <label for="exampleFormControlInput1" class="form-label">Periodik semester</label>
+                        <select name="semester" class="form-select" aria-label="Default select example">
+                            <option value="{{$val->semester}}" selected>{{$val->semester}}</option>
+                            <option value="ganjil">ganjil</option>
+                            <option value="genap">genap</option>
                         </select>
                     </div>
-                    <div class="mt-3">
-                        @foreach($fields as $fil)
-                        <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
-                        <input type="text" name="{{$fil}}" class="form-control" value="{{$val->$fil}}">
-                        @endforeach
+                    <div class="mb-2">
+                        <label for="exampleFormControlInput1" class="form-label">Tahun akademik</label>
+                        <input class="form-control form-control-sm" type="text" name="tahun" value="{{$val->tahun}}" aria-label=".form-control-sm example">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -140,24 +129,25 @@
 </div>
 <!-- end Modal update -->
 
-<!-- modal delete -->
-<div class="modal fade" id="modalDelete{{$val->id_sarana_periodik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal update -->
+<div class="modal fade" id="modalDelete{{$val->id_tahun_akademik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete data</h1>
+                <h5 class="modal-title" id="exampleModalLabel">Hapus tahun akademik</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            @csrf
             <div class="modal-body">
-                <p>Yakin ingin menghapus data ini..?</p>
+                <p>Yakin ingin menghapus data ini?</p>
             </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-                <a href="/trxperiodik/delete/{{$val->id_sarana_periodik}}" class="btn btn-danger">Delete</a>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <a href="/tahun_akademik/delete_tahun_akademik/{{$val->id_tahun_akademik}}" class="btn btn-info">Hapus</a>
             </div>
         </div>
     </div>
 </div>
-<!-- end-modal delete -->
+<!-- end Modal update -->
 @endforeach
 @endsection

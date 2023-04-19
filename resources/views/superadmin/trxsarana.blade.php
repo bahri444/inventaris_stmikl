@@ -19,7 +19,7 @@
             <div class="card-body">
                 <div class="mb-2">
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="uil-plus"></i>Tambah trx ruang
+                        <i class="uil-plus"></i>Tambah trx sarana
                     </button>
                 </div>
                 <div class="tab-content">
@@ -28,28 +28,30 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Nama sarana</th>
                                     <th>Tahun akademik</th>
-                                    <th>Nama ruang</th>
-                                    <th>Kerusakan</th>
-                                    <th>Nilai kerusakan</th>
+                                    <th>Jumlah total</th>
+                                    <th>Jumlah like</th>
+                                    <th>Jumlah rusak</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $k = 1 ?>
-                                @foreach($trxRuang as $row)
+                                @foreach($transaksi_sarana as $row)
                                 <tr>
                                     <td>{{$k++}}</td>
+                                    <td>{{$row->nama_sarana}}</td>
                                     <td>{{$row->tahun}} - {{$row->semester}}</td>
-                                    <td>{{$row->nama_ruang}}</td>
-                                    <td>{{$row->kerusakan}}</td>
-                                    <td>{{$row->nilai_kerusakan}}</td>
+                                    <td>{{$row->jumlah_total}}</td>
+                                    <td>{{$row->jumlah_like}}</td>
+                                    <td><?= $row->jumlah_total - $row->jumlah_like ?></td>
                                     <td>
                                         <div>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_trx}}">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_sarana_periodik}}">
                                                 <i class="uil-trash-alt"></i>
                                             </button>
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_trx}}">
+                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_sarana_periodik}}">
                                                 <i class="uil-edit"></i>
                                             </button>
                                         </div>
@@ -75,15 +77,15 @@
                 <h5 class="modal-title" id="exampleModalLabel">Tambah transaksi ruang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/trxruang/addtrxruang" method="post">
+            <form action="/trxsarana/addtrxsarana" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Ruangan</label>
-                        <select name="id_ruang" class="form-select" aria-label="Default select example">
-                            <option selected>pilih ruang</option>
-                            @foreach($ruang as $valId)
-                            <option value="{{$valId->id_ruang}}">{{$valId->nama_ruang}}</option>
+                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
+                        <select name="id_sarana" class="form-select" aria-label="Default select example">
+                            <option selected>pilih sarana</option>
+                            @foreach($getnamaruang as $ValId)
+                            <option value="{{$ValId->id_sarana}}">{{$ValId->nama_sarana}} - {{$ValId->nama_ruang}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -96,19 +98,6 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Kerusakan</label>
-                        <select name="kerusakan" class="form-select" aria-label="Default select example">
-                            <option selected>pilih jenis kerusakan</option>
-                            <option value="tidak ada kerusakan">Tidak ada kerusakan</option>
-                            <option value="rusak sedang">Rusak sedang</option>
-                            <option value="rusak berat">Rusak berat</option>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="exampleFormControlInput1" class="form-label">Nilai kerusakan</label>
-                        <input class="form-control form-control-sm" type="number" name="nilai_kerusakan" placeholder="masukkan nilai kerusakan" aria-label=".form-control-sm example">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -120,25 +109,24 @@
 </div>
 <!-- end Modal add -->
 
-@foreach($trxRuang as $val)
+@foreach($transaksi_sarana as $val)
 <!-- Modal update -->
-<div class="modal fade" id="modalUpdate{{$val->id_trx}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalUpdate{{$val->id_sarana_periodik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update transaksi trx</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update transaksi ruang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/trxruang/updttrxruang" method="post">
+            <form action="/trxperiodik/updttrxperiodik" method="post">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" name="id_trx" value="{{$val->id_trx}}" class="form-control">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Ruangan</label>
-                        <select name="id_ruang" class="form-select" aria-label="Default select example">
-                            <option value="{{$val->id_ruang}}" selected>{{$val->nama_ruang}}</option>
-                            @foreach($ruang as $valId)
-                            <option value="{{$valId->id_ruang}}">{{$valId->nama_ruang}}</option>
+                        <input type="hidden" name="id_sarana_periodik" value="{{$val->id_sarana_periodik}}">
+                        <label for="exampleFormControlInput1" class="form-label">Sarana</label>
+                        <select name="id_sarana" class="form-select" aria-label="Default select example">
+                            @foreach($sarana as $ValId)
+                            <option value="{{$ValId->id_sarana}}">{{$ValId->nama_sarana}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -147,22 +135,15 @@
                         <select name="id_tahun_akademik" class="form-select" aria-label="Default select example">
                             <option value="{{$val->id_tahun_akademik}}" selected>{{$val->tahun}} - {{$val->semester}}</option>
                             @foreach($tahun_akademik as $valId)
-                            <option value="{{$valId->id_tahun_akademik}}">{{$valId->tahun}} - {{$valId->semester}}</option>
+                            <option value="{{$valId->id_tahun_akademik}}">{{$valId->tahun}}/{{$valId->semester}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Kerusakan</label>
-                        <select name="kerusakan" class="form-select" aria-label="Default select example">
-                            <option value="{{$val->kerusakan}}" selected>{{$val->kerusakan}}</option>
-                            <option value="tidak ada kerusakan">Tidak ada kerusakan</option>
-                            <option value="rusak sedang">Rusak sedang</option>
-                            <option value="rusak berat">Rusak berat</option>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="exampleFormControlInput1" class="form-label">Nilai kerusakan</label>
-                        <input class="form-control form-control-sm" type="text" name="nilai_kerusakan" value="{{$val->nilai_kerusakan}}" aria-label=".form-control-sm example">
+                    <div class="mt-3">
+                        @foreach($fields as $fil)
+                        <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
+                        <input type="text" name="{{$fil}}" class="form-control" value="{{$val->$fil}}">
+                        @endforeach
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -176,7 +157,7 @@
 <!-- end Modal update -->
 
 <!-- modal delete -->
-<div class="modal fade" id="modalDelete{{$val->id_trx}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalDelete{{$val->id_sarana_periodik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -188,7 +169,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-                <a href="/trxruang/delete/{{$val->id_trx}}" class="btn btn-danger">Delete</a>
+                <a href="/trxperiodik/delete/{{$val->id_sarana_periodik}}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>

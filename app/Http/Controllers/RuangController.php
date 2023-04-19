@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bangunan;
 use App\Models\Ruang;
+use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
 
 class RuangController extends Controller
@@ -14,7 +15,7 @@ class RuangController extends Controller
         $bangunan = Bangunan::select('id_bangunan', 'nama_bangunan')->get();
         $fields = ['kode_ruang',    'nama_ruang',    'panjang_ruang',    'lebar_ruang',    'luas_ruang',    'kapasitas'];
         return view('superadmin.ruang', [
-            'title' => 'data ruang',
+            'title' => 'Data ruangan',
             'ruang' => $ruang,
             'fields' => $fields,
             'bangunan' => $bangunan,
@@ -31,6 +32,7 @@ class RuangController extends Controller
             'luas_ruang' => 'required|max:30',
             'kapasitas' => 'required|max:30',
         ]);
+        // dd($request);
         try {
             Ruang::create($request->all());
             return redirect('ruang')->with('success', 'berhasil di simpan');

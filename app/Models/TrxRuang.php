@@ -12,6 +12,7 @@ class TrxRuang extends Model
     protected $table = 'trx_kondisi_ruang';
     protected $fillable = [
         'id_ruang',
+        'id_tahun_akademik',
         'kerusakan',
         'nilai_kerusakan',
         'created_at',
@@ -22,5 +23,9 @@ class TrxRuang extends Model
     public function scopeJoinToRuang($query)
     {
         return $query->join('tbl_ruang', 'tbl_ruang.id_ruang', 'trx_kondisi_ruang.id_ruang');
+    }
+    public function scopeJoinToTahunAkademik($query)
+    {
+        return $query->join('tahun_akademik', 'tahun_akademik.id_tahun_akademik', 'trx_kondisi_ruang.id_tahun_akademik');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ruang;
+use App\Models\TahunAkademik;
 use App\Models\TrxRuang;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,10 @@ class TrxRuangController extends Controller
 {
     public function GettrxRuang()
     {
-        $trxRuang = TrxRuang::joinToRuang()->get();
+        $trxRuang = TrxRuang::joinToRuang()->joinToTahunAkademik()->get();
+        // $trxRuang = TrxRuang::joinToRuang()->joinToTahunAkademik()->groupBy('tahun', 'semester')->where('kerusakan', '=', 'rusak sedang')->count();
+
+        $tahun_akademik = TahunAkademik::select('id_tahun_akademik', 'tahun', 'semester')->get();
         $ruang = Ruang::select('id_ruang', 'nama_ruang')->get();
         // $fields = [];
         return view('superadmin.trxruang', [
@@ -18,12 +22,14 @@ class TrxRuangController extends Controller
             'trxRuang' => $trxRuang,
             // 'fields' => $fields,
             'ruang' => $ruang,
+            'tahun_akademik' => $tahun_akademik,
         ]);
     }
     public function AddTrxRuang(Request $request)
     {
         $request->validate([
             'id_ruang' => 'required',
+            'id_tahun_akademik' => 'required',
             'kerusakan' => 'required',
             'nilai_kerusakan' => 'required|max:2',
         ]);
@@ -43,12 +49,14 @@ class TrxRuangController extends Controller
         // nilai_kerusakan
         $request->validate([
             'id_ruang' => 'required',
+            'id_tahun_akademik' => 'required',
             'kerusakan' => 'required',
             'nilai_kerusakan' => 'required|max:2',
         ]);
         try {
             $data = array(
                 'id_ruang' => $request->post('id_ruang'),
+                'id_tahun_akademik' => $request->post('id_tahun_akademik'),
                 'kerusakan' => $request->post('kerusakan'),
                 'nilai_kerusakan' => $request->post('nilai_kerusakan'),
             );

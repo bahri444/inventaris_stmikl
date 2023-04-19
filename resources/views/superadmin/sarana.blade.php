@@ -32,7 +32,7 @@
                                     <th>Spesifikasi</th>
                                     <th>Kepemilikan sarana</th>
                                     <th>Jumlah total</th>
-                                    <th>Jumlah like</th>
+                                    <th>Jumlah rusak</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -47,7 +47,7 @@
                                     <td>{{$row->spesifikasi}}</td>
                                     <td>{{$row->kepemilikan_sarana}}</td>
                                     <td>{{$row->jumlah_total}}</td>
-                                    <td>{{$row->jumlah_like}}</td>
+                                    <td><?= $row->jumlah_total - $row->jumlah_like ?></td>
                                     <td>
                                         <div>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_sarana}}">

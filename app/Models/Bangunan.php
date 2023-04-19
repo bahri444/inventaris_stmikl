@@ -12,6 +12,7 @@ class Bangunan extends Model
     protected $table = 'tbl_bangunan';
     protected $fillable = [
         'id_tanah',
+        'id_tahun_akademik',
         'jenis_bangunan',
         'nama_bangunan',
         'panjang_bangunan',
@@ -27,5 +28,9 @@ class Bangunan extends Model
     public function scopeJoinToTanah($query)
     {
         return $query->join('tbl_tanah', 'tbl_tanah.id_tanah', '=', 'tbl_bangunan.id_tanah');
+    }
+    public function scopeJoinToTahunAkademik($query)
+    {
+        return $query->join('tahun_akademik', 'tahun_akademik.id_tahun_akademik', '=', 'tbl_bangunan.id_tahun_akademik');
     }
 }
