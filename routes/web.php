@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BangunanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SaranaController;
@@ -25,9 +26,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/visimisiti', function () {
+    return view('home.teknikinformatika');
+});
+
+Route::get('/visimisisi', function () {
+    return view('home.sisteminformasi');
+});
+// Route::get('/', [HomeController::class, 'GetHome'])->name('gethome');
 Route::get('/', [UserController::class, 'GetLogin'])->name('viewlogin');
 Route::get('/logout', [UserController::class, 'Logout'])->name('logout');
 Route::prefix('tanah')->group(function () {
