@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('visi_misi', function (Blueprint $table) {
             $table->id('id_visi_misi');
             $table->foreignId('kode_program_studi');
-            $table->longText('visi');
-            $table->longText('misi');
+            $table->string('visi_dan_misi', 75);
             $table->timestamps();
             $table->foreign('kode_program_studi')->references('kode_program_studi')->on('program_studi')->cascadeOnUpdate()->cascadeOnDelete();
         });

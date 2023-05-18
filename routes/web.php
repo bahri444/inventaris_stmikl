@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/renderpdf', function () {
+    return view('superadmin.testpdf');
+});
 Route::get('/visimisiti', function () {
     return view('home.teknikinformatika');
 });
@@ -97,6 +100,7 @@ Route::prefix('program_studi')->group(function () {
 });
 Route::prefix('visi_misi')->group(function () {
     Route::get('/', [VisiMisiController::class, 'GetVisiMisi'])->name('visimisi');
+    Route::get('/{id}', [VisiMisiController::class, 'GetInfo'])->name('infovisimisi');
     Route::post('/addvisimisi', [VisiMisiController::class, 'AddVisiMisi'])->name('addvisimisi');
     Route::post('/updatevisimisi', [VisiMisiController::class, 'UpdateVisiMisi'])->name('updatevisimisi');
     Route::get('/deletevisimisi/{id}', [VisiMisiController::class, 'DeleteVisiMisi'])->name('deletevisimisi');

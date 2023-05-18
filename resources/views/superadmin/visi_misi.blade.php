@@ -1,18 +1,5 @@
 @extends('layout.template')
 @section('content')
-<!-- 
-foreach(visimisi as val)
-foreach(val->programStudi as row)
-<p>val->kode_program_studi</p>
-
-<p>row->nama_program_studi</p>
-<p>val->visi</p>
-<p>val->misi</p>
-
-endforeach
-endforeach 
-=> cara diatas merupakan cara untuk menampilkan data yang menggunakan relasi eloquen 1 to N 
--->
 
 <!-- $val->programStudi->nama_program_studi => cara menggunakan relasi 1 to 1 -->
 
@@ -48,8 +35,7 @@ endforeach
                                     <th>No</th>
                                     <th>Kode program studi</th>
                                     <th>Nama program studi</th>
-                                    <th>Visi</th>
-                                    <th>Misi</th>
+                                    <th>File visi misi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -60,10 +46,15 @@ endforeach
                                     <td>{{$k++}}</td>
                                     <td>{{$row->kode_program_studi}}</td>
                                     <td>{{$row->programStudi->nama_program_studi}}</td>
-                                    <td>{{$row->visi}}</td>
-                                    <td>{{$row->misi}}</td>
+                                    <td>{{$row->visi_dan_misi}}</td>
                                     <td>
                                         <div>
+                                            <a href="/visi_misi/{{$row->id_visi_misi}}" class="btn btn-primary">
+                                                <i class="uil-info"></i>
+                                            </a>
+                                            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInfo{{$row->id_visi_misi}}">
+                                                <i class="uil-info"></i>
+                                            </button> -->
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_visi_misi}}">
                                                 <i class="uil-trash-alt"></i>
                                             </button>
@@ -93,7 +84,7 @@ endforeach
                 <h5 class="modal-title" id="exampleModalLabel">Tambah visi & misi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/visi_misi/addvisimisi" method="post">
+            <form action="/visi_misi/addvisimisi" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-2">
@@ -106,18 +97,8 @@ endforeach
                         </select>
                     </div>
                     <div class="mb-2">
-                        <label for="exampleFormControlInput1" class="form-label">Visi</label>
-                        <div class="form-floating">
-                            <textarea class="form-control" name="visi" id="floatingTextarea"></textarea>
-                            <label for="floatingSelect">masukkan visi program studi</label>
-                        </div>
-                    </div>
-                    <div class="mb-2">
-                        <label for="exampleFormControlInput1" class="form-label">Misi</label>
-                        <div class="form-floating">
-                            <textarea class="form-control" name="misi" id="floatingTextarea2" style="height: 100px"></textarea>
-                            <label for="floatingSelect">masukkan misi program studi</label>
-                        </div>
+                        <label for="exampleFormControlInput1" class="form-label">Visi dan misi</label>
+                        <input type="file" class="form-control" name="visi_dan_misi">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -139,7 +120,7 @@ endforeach
                 <h5 class="modal-title" id="exampleModalLabel">Update visi & misi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/visi_misi/updatevisimisi" method="post">
+            <form action="/visi_misi/updatevisimisi" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" name="id_visi_misi" value="{{$val->id_visi_misi}}" class=".form-control-sm">
@@ -153,12 +134,8 @@ endforeach
                         </select>
                     </div>
                     <div class="mb-2">
-                        <label for="exampleFormControlInput1" class="form-label">Visi</label>
-                        <textarea class="form-control" name="visi" placeholder="{{$val->visi}}" id="exampleFormControlTextarea1" rows="2"></textarea>
-                    </div>
-                    <div class="mb-2">
-                        <label for="exampleFormControlInput1" class="form-label">Misi</label>
-                        <textarea class="form-control" name="misi" placeholder="{{$val->misi}}" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="exampleFormControlInput1" class="form-label">Visi dan misi</label>
+                        <input type="file" class="form-control" name="visi_dan_misi">
                     </div>
                 </div>
                 <div class="modal-footer">
