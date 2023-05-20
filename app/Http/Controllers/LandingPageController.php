@@ -10,7 +10,7 @@ class LandingPageController extends Controller
 {
     public function GetVisiMisiTI()
     {
-        $visi = Visi::with('JoinToTableKodeProgramStudi')->get();
+        $visi = Visi::with('JoinToTableProgramStudi')->get();
         $data = Misi::with('JoinToTableSubMisi')->get();
         return view('home.teknikinformatika', [
             'title' => 'Data sub misi',
@@ -20,7 +20,7 @@ class LandingPageController extends Controller
     }
     public function GetVisiMisiSI()
     {
-        $visi = Visi::with('JoinToTableKodeProgramStudi')->get();
+        $visi = Visi::with('JoinToTableProgramStudi')->get();
         $data = Misi::with('JoinToTableSubMisi')->get();
         return view('home.sisteminformasi', [
             'title' => 'Data sub misi',

@@ -37,7 +37,7 @@
                                 @foreach($data_visi as $row)
                                 <tr>
                                     <td>{{$k++}}</td>
-                                    <td>{{$row->JoinToTableKodeProgramStudi->nama_program_studi}}</td>
+                                    <td>{{$row->JoinToTableProgramStudi->nama_program_studi}}</td>
                                     <td>{{$row->point_visi}}</td>
                                     <td>
                                         <div>
@@ -117,7 +117,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Program studi</label>
                         <select name="kode_program_studi" class="form-select" aria-label="Default select example">
-                            <option value="{{$val->kode_program_studi}}" selected>{{$val->JoinToTableKodeProgramStudi->nama_program_studi}}</option>
+                            <option value="{{$val->kode_program_studi}}" selected>{{$val->JoinToTableProgramStudi->nama_program_studi}}</option>
                             @foreach($program_studi as $prodi)
                             <option value="{{$prodi->kode_program_studi}}">{{$prodi->nama_program_studi}}</option>
                             @endforeach

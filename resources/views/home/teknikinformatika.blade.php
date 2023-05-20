@@ -2,8 +2,8 @@
 @section('content')
 <div class="col-lg-10 col-md-10 col-sm-12 mx-auto">
     @foreach($visi as $v)
-    @if($v->JoinToTableKodeProgramStudi->nama_program_studi == "Teknik Informatika")
-    <h5 class="text-center mt-4 mb-2">{{$v->JoinToTableKodeProgramStudi->nama_program_studi}}</h5>
+    @if($v->JoinToTableProgramStudi->nama_program_studi == "Teknik Informatika")
+    <h5 class="text-center mt-4 mb-2">{{$v->JoinToTableProgramStudi->nama_program_studi}}</h5>
     <h6 class="text-center mt-4 mb-2">Visi</h6>
     <p style="text-align: justify;">{{$v->point_visi}}</p>
     @endif

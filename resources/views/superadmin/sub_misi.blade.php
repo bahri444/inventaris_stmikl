@@ -82,8 +82,8 @@
                         <label for="exampleFormControlInput1" class="form-label">Misi</label>
                         <select name="id_misi" class="form-select" aria-label="Default select example">
                             <option selected>pilih misi</option>
-                            @foreach($sub_misi as $sbm)
-                            <option value="{{$sbm->id_misi}}">{{$sbm->point_misi}}</option>
+                            @foreach($get_misi as $sbm)
+                            <option value="{{$sbm->id_misi}}">{{$sbm->kode_program_studi}}, {{$sbm->point_misi}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -120,9 +120,9 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Program studi</label>
                         <select name="id_misi" class="form-select" aria-label="Default select example">
-                            <option value="{{$val->id_misi}}" selected>{{$row->point_misi}}</option>
-                            @foreach($data as $misi)
-                            <option value="{{$misi->id_misi}}">{{$misi->point_misi}}</option>
+                            <option value="{{$val->id_misi}}" selected>{{$row->kode_program_studi}}, {{$row->point_misi}}</option>
+                            @foreach($get_misi as $misi)
+                            <option value="{{$misi->id_misi}}">{{$misi->kode_program_studi}}, {{$misi->point_misi}}</option>
                             @endforeach
                         </select>
                     </div>

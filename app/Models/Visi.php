@@ -11,7 +11,7 @@ class Visi extends Model
     protected $primaryKey = 'id_visi';
     protected $table = 'visi';
     protected $fillable = ['kode_program_studi', 'point_visi', 'created_at', 'updated_at'];
-    public function JoinToTableKodeProgramStudi()
+    public function JoinToTableProgramStudi()
     {
         return $this->hasOne(ProgramStudi::class, 'kode_program_studi', 'kode_program_studi');
     }

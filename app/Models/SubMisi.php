@@ -16,4 +16,8 @@ class SubMisi extends Model
     {
         return $this->hasMany(Misi::class, 'id_misi', 'id_misi');
     }
+    public function JoinToProgramStudi()
+    {
+        return $this->hasMany(ProgramStudi::class, 'kode_program_studi', 'kode_program_studi');
+    }
 }

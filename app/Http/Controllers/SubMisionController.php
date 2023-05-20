@@ -11,12 +11,12 @@ class SubMisionController extends Controller
 {
     public function GetSubMisi()
     {
-        $data = SubMisi::with('JoinToTableMisi')->get();
-        $sub_misi = Misi::select('id_misi', 'point_misi')->get();
+        $data = SubMisi::with('JoinToTableMisi', 'JoinToProgramStudi')->get();
+        $get_misi = Misi::select('kode_program_studi', 'id_misi', 'point_misi')->get();
         return view('superadmin.sub_misi', [
             'title' => 'Data sub misi',
             'data' => $data,
-            'sub_misi' => $sub_misi,
+            'get_misi' => $get_misi,
         ]);
     }
     public function AddSubMisi(Request $request)

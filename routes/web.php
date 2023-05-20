@@ -14,7 +14,6 @@ use App\Http\Controllers\TrxSaranaController;
 use App\Http\Controllers\TrxRuangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiController;
-use App\Http\Controllers\VisiMisiController;
 use App\Models\TahunAkademik;
 use Illuminate\Support\Facades\Route;
 
