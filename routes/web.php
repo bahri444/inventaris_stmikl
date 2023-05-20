@@ -2,15 +2,18 @@
 
 use App\Http\Controllers\BangunanController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\MisiController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SaranaController;
+use App\Http\Controllers\SubMisionController;
 use App\Http\Controllers\TahunAkademikController;
 use App\Http\Controllers\TanahController;
 use App\Http\Controllers\TrxSaranaController;
 use App\Http\Controllers\TrxRuangController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisiController;
 use App\Http\Controllers\VisiMisiController;
 use App\Models\TahunAkademik;
 use Illuminate\Support\Facades\Route;
@@ -29,14 +32,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/renderpdf', function () {
     return view('superadmin.testpdf');
 });
-Route::get('/visimisiti', function () {
-    return view('home.teknikinformatika');
-});
+Route::get('/visimisiti', [LandingPageController::class, 'GetVisiMisiTI']);
+Route::get('/visimisisi', [LandingPageController::class, 'GetVisiMisiSI']);
+Route::get('/all_visi_misi', [LandingPageController::class, 'GetAll']);
 
-Route::get('/visimisisi', function () {
-    return view('home.sisteminformasi');
-});
-// Route::get('/', [HomeController::class, 'GetHome'])->name('gethome');
 Route::get('/', [UserController::class, 'GetLogin'])->name('viewlogin');
 Route::get('/logout', [UserController::class, 'Logout'])->name('logout');
 Route::prefix('tanah')->group(function () {
@@ -98,10 +97,22 @@ Route::prefix('program_studi')->group(function () {
     Route::post('/updateprogramstudi', [ProgramStudiController::class, 'UpdateProgramStudi'])->name('updateprogramstudi');
     Route::get('/deleteprogramstudi/{id}', [ProgramStudiController::class, 'DeleteProgramStudi'])->name('deleteprogramstudi');
 });
-Route::prefix('visi_misi')->group(function () {
-    Route::get('/', [VisiMisiController::class, 'GetVisiMisi'])->name('visimisi');
-    Route::get('/{id}', [VisiMisiController::class, 'GetInfo'])->name('infovisimisi');
-    Route::post('/addvisimisi', [VisiMisiController::class, 'AddVisiMisi'])->name('addvisimisi');
-    Route::post('/updatevisimisi', [VisiMisiController::class, 'UpdateVisiMisi'])->name('updatevisimisi');
-    Route::get('/deletevisimisi/{id}', [VisiMisiController::class, 'DeleteVisiMisi'])->name('deletevisimisi');
+
+Route::prefix('visi')->group(function () {
+    Route::get('/', [VisiController::class, 'GetVisi'])->name('visi');
+    Route::post('/addvisi', [VisiController::class, 'AddVisi'])->name('addvisi');
+    Route::post('/updatevisi', [VisiController::class, 'UpdateVisi'])->name('updatevisi');
+    Route::get('/deletevisi/{id}', [VisiController::class, 'DeleteVisi'])->name('deletevisi');
+});
+Route::prefix('misi')->group(function () {
+    Route::get('/', [MisiController::class, 'GetMisi'])->name('misi');
+    Route::post('/addmisi', [MisiController::class, 'AddMisi'])->name('addmisi');
+    Route::post('/updatemisi', [MisiController::class, 'UpdateMisi'])->name('updatemisi');
+    Route::get('/deletemisi/{id}', [MisiController::class, 'DeleteMisi'])->name('deletemisi');
+});
+Route::prefix('sub_misi')->group(function () {
+    Route::get('/', [SubMisionController::class, 'GetSubMisi'])->name('sub_misi');
+    Route::post('/addsubmisi', [SubMisionController::class, 'AddSubMisi'])->name('addsubmisi');
+    Route::post('/updatesubmisi', [SubMisionController::class, 'UpdateSubMisi'])->name('updatesubmisi');
+    Route::get('/deletesubmisi/{id}', [SubMisionController::class, 'DeleteSubMisi'])->name('deletesubmisi');
 });

@@ -65,10 +65,10 @@ class UserController extends Controller
 
     public function GetLogin()
     {
-        $visimisi = VisiMisi::with('programStudi')->get();
+        // $visimisi = VisiMisi::with('programStudi')->get();
         return view('auth.loginform', [
             'title' => 'halaman login',
-            'visimisi' => $visimisi
+            // 'visimisi' => $visimisi
         ]);
     }
 

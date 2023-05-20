@@ -31,6 +31,21 @@
     <!-- SwiperSlider css -->
     <link rel="stylesheet" href="{{asset('assetslandingpage')}}/vendor/swiperSlider/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{asset('assetslandingpage')}}/landing-pages/css/landing-pages.min.css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+    <style>
+        #canvas_container {
+            width: 100%;
+            height: 790px;
+            overflow: auto;
+            padding-left: -20%;
+            padding-right: -20%;
+        }
+
+        #canvas_container {
+            background: #fff;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body class=" body-bg landing-pages">

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('visi_misi', function (Blueprint $table) {
-            $table->id('id_visi_misi');
+        Schema::create('visi', function (Blueprint $table) {
+            $table->id('id_visi');
             $table->foreignId('kode_program_studi');
-            $table->string('visi_dan_misi', 75);
+            $table->longText('point_visi');
             $table->timestamps();
             $table->foreign('kode_program_studi')->references('kode_program_studi')->on('program_studi')->cascadeOnUpdate()->cascadeOnDelete();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('visi_misi');
+        Schema::drop('visi');
     }
 };
