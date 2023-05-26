@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TahunAkademik;
 use App\Models\User;
 use App\Models\VisiMisi;
 use Illuminate\Http\Request;
@@ -65,10 +66,10 @@ class UserController extends Controller
 
     public function GetLogin()
     {
-        // $visimisi = VisiMisi::with('programStudi')->get();
+        $tahunakademik = TahunAkademik::select('id_tahun_akademik', 'semester', 'tahun')->orderBy('id_tahun_akademik', 'desc')->get();
         return view('auth.loginform', [
             'title' => 'halaman login',
-            // 'visimisi' => $visimisi
+            'tahunakademik' => $tahunakademik
         ]);
     }
 
@@ -77,10 +78,12 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required',
             'password' => 'required',
+            'id_tahun_akademik' => 'required',
         ]);
         if (Auth::attempt($request->only("email", "password"))) {
             if (Auth::user()->role == 'superadmin') {
-                return redirect('tanah')->with('success', "berhasil login");
+                Session::put('id_tahun_akademik', $request->id_tahun_akademik);
+                return redirect('/dashboard')->with('success', "berhasil login");
             } elseif (Auth::user()->role == 'pengguna') {
                 return redirect('dashboard')->with('success', "berhasil login");
             } else {

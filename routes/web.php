@@ -37,6 +37,9 @@ Route::get('/all_visi_misi', [LandingPageController::class, 'GetAll']);
 
 Route::get('/', [UserController::class, 'GetLogin'])->name('viewlogin');
 Route::get('/logout', [UserController::class, 'Logout'])->name('logout');
+
+Route::get('/dashboard', [DashboardController::class, 'ViewDashboard'])->name('dashboard');
+
 Route::prefix('tanah')->group(function () {
     Route::get('/', [TanahController::class, 'GetTanahBangunan'])->name('gettanahbangunan');
     Route::post('/addtanah', [TanahController::class, 'AddTanah'])->name('addtanah');

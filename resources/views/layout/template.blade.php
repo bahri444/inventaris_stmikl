@@ -61,6 +61,12 @@
                 <ul class="side-nav">
                     <li class="side-nav-title side-nav-item mt-4">MENU</li>
                     <li class="side-nav-item">
+                        <a href="/dashboard" class="side-nav-link">
+                            <i class="uil-tachometer-fast"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
                         <a href="/tanah" class="side-nav-link">
                             <i class="uil-building"></i>
                             <span>Tanah & bangunan</span>

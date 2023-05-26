@@ -44,13 +44,14 @@
                                 </span>
                                 @enderror
                             </div>
-                            <div class="checkbox mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        Remember me
-                                    </label>
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="pwd">Periodik semester <span class="text text-danger">*</span></label>
+                                <select name="id_tahun_akademik" class="form-select" aria-label="Default select example">
+                                    <option selected>pilih periodik semester</option>
+                                    @foreach($tahunakademik as $ta)
+                                    <option value="{{$ta->id_tahun_akademik}}">{{$ta->tahun}}:{{$ta->semester}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary col-12">Submit</button>
                         </form>

@@ -45,13 +45,13 @@
                                     <td>{{$row->tahun}} - {{$row->semester}}</td>
                                     <td>{{$row->jumlah_total}}</td>
                                     <td>{{$row->jumlah_like}}</td>
-                                    <td><?= $row->jumlah_total - $row->jumlah_like ?></td>
+                                    <td>{{$row->jumlah_total - $row->jumlah_like }}</td>
                                     <td>
                                         <div>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_sarana_periodik}}">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{$row->id_transaksi_sarana}}">
                                                 <i class="uil-trash-alt"></i>
                                             </button>
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_sarana_periodik}}">
+                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$row->id_transaksi_sarana}}">
                                                 <i class="uil-edit"></i>
                                             </button>
                                         </div>
@@ -98,6 +98,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="mt-3">
+                        <label for="exampleFormControlInput1" class="form-label">Jumlah like</label>
+                        <input type="number" name="jumlah_like" class="form-control" placeholder="jumlah inventaris bagus">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -111,20 +115,21 @@
 
 @foreach($transaksi_sarana as $val)
 <!-- Modal update -->
-<div class="modal fade" id="modalUpdate{{$val->id_sarana_periodik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalUpdate{{$val->id_transaksi_sarana}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Update transaksi ruang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/trxperiodik/updttrxperiodik" method="post">
+            <form action="/trxsarana/updttrxsarana" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input type="hidden" name="id_sarana_periodik" value="{{$val->id_sarana_periodik}}">
+                        <input type="hidden" name="id_transaksi_sarana" value="{{$val->id_transaksi_sarana}}">
                         <label for="exampleFormControlInput1" class="form-label">Sarana</label>
                         <select name="id_sarana" class="form-select" aria-label="Default select example">
+                            <option value="{{$val->id_sarana}}" selected>{{$val->nama_sarana}}</option>
                             @foreach($sarana as $ValId)
                             <option value="{{$ValId->id_sarana}}">{{$ValId->nama_sarana}}</option>
                             @endforeach
@@ -140,10 +145,8 @@
                         </select>
                     </div>
                     <div class="mt-3">
-                        @foreach($fields as $fil)
-                        <label for="exampleFormControlInput1" class="form-label">{{join(" ",array_map("ucfirst",explode("_",$fil)))}}</label>
-                        <input type="text" name="{{$fil}}" class="form-control" value="{{$val->$fil}}">
-                        @endforeach
+                        <label for="exampleFormControlInput1" class="form-label">Jumlah like</label>
+                        <input type="number" name="jumlah_like" class="form-control" value="{{$val->jumlah_like}}">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -157,7 +160,7 @@
 <!-- end Modal update -->
 
 <!-- modal delete -->
-<div class="modal fade" id="modalDelete{{$val->id_sarana_periodik}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalDelete{{$val->id_transaksi_sarana}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -169,7 +172,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-                <a href="/trxperiodik/delete/{{$val->id_sarana_periodik}}" class="btn btn-danger">Delete</a>
+                <a href="/trxperiodik/delete/{{$val->id_transaksi_sarana}}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
