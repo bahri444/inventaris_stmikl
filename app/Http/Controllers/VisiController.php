@@ -15,7 +15,7 @@ class VisiController extends Controller
         $data_visi = Visi::with('JoinToTableProgramStudi')->get();
         $program_studi = ProgramStudi::select('kode_program_studi', 'nama_program_studi')->get();
         return view('superadmin.visi', [
-            'title' => 'page visi',
+            'title' => 'Visi',
             'data_visi' => $data_visi,
             'program_studi' => $program_studi,
         ]);
