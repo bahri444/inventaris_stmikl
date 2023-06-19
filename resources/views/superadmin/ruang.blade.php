@@ -78,7 +78,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah sarana</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah ruang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/ruang/addruang" method="post">
@@ -116,7 +116,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah sarana</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update ruang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/ruang/updtruang" method="post">
