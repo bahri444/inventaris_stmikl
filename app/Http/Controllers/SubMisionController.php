@@ -57,10 +57,10 @@ class SubMisionController extends Controller
     {
         try {
             SubMisi::where('id_misi', '=', $id)->delete();
-            return redirect('sub_misi')->with('success', 'berhasil di hapus');
+            return redirect('/sub_misi')->with('success', 'berhasil di hapus');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect('sub_misi')->with('errors', $e);
+            return redirect('/sub_misi')->with('errors', $e);
         }
     }
 }
